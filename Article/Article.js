@@ -112,3 +112,65 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector('.articles');
+
+// data.forEach((element) => {
+//   articles.appendChild(createArticle(element.title, element.date, element.firstParagraph,element.secondParagraph,element.thirdParagraph))
+// });
+
+data.map((a) => {
+  return articles.appendChild(createArticle(a.title, a.date, a.firstParagraph,a.secondParagraph,a.thirdParagraph))
+});
+
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleContnentOne = document.createElement('p');
+  const articleContnentTwo = document.createElement('p');
+  const articleContnentThree = document.createElement('p');
+  const spanExpand = document.createElement('span');
+  
+
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleContnentOne);
+  article.appendChild(articleContnentTwo);
+  article.appendChild(articleContnentThree);
+  article.appendChild(spanExpand);
+
+  // add the classes back in
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  spanExpand.classList.add('expandButton');
+
+  // add the content back in
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleContnentOne.textContent = firstParagraph;
+  articleContnentTwo.textContent = secondParagraph;
+  articleContnentThree.textContent = thirdParagraph;
+  spanExpand.innerText = 'Click to Expand';
+
+  spanExpand.addEventListener('click', (event) => {
+    article.classList.toggle("article-open");
+    if(spanExpand.innerHTML != "Close"){
+      spanExpand.innerText = "Close"
+    } else {
+      spanExpand.innerText = "Click To Expand"
+    }
+  });
+
+  return article;
+}
+
+const newArticles = [{
+  title: 'D-Day',
+  date: 'June 6, 1944',
+  firstParagraph:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis dui eget enim vestibulum quis lacinia turpis suscipit. Aliquam adipiscing suscipit viverra. Donec a risus risus. Morbi gravida mollis quam sed rutrum. Fusce consequat volutpat est. Duis eget sollicitudin ligula. Nunc in felis sit amet nisi eleifend interdum non ut mauris. Nunc nulla quam, malesuada eget luctus quis, scelerisque quis velit. Curabitur vehicula est sed ipsum laoreet sagittis. Etiam eget metus sed diam lobortis pellentesque et vel elit.',
+
+  secondParagraph:'Morbi vitae nunc a nunc aliquam tempus ut nec mi. Suspendisse risus nibh, facilisis nec dignissim vitae, sollicitudin vel nulla. Suspendisse tincidunt vulputate facilisis. Phasellus pharetra, odio nec malesuada gravida, nisi magna porta mi, in facilisis elit nisl sed leo. Praesent ac ipsum dui. Morbi rutrum purus quis risus tincidunt in faucibus orci dictum. Vivamus aliquam pharetra erat, vitae ullamcorper ligula auctor eu. Sed vitae sem et sapien luctus pharetra. Duis laoreet est at lectus elementum eget scelerisque tellus tristique. Pellentesque quam erat, aliquam id vehicula in, interdum vel justo. Aliquam erat volutpat. Fusce adipiscing pharetra felis, placerat mattis magna rutrum eu. Nulla tempus massa nec leo adipiscing non aliquam turpis dignissim. Donec vitae turpis ullamcorper libero ullamcorper ultrices. Nulla justo odio, gravida ut imperdiet sit amet, volutpat nec est. In quis nisl magna, at porttitor libero.',
+  thirdParagraph:'Phasellus congue consequat lectus, in tristique quam pretium feugiat. Pellentesque hendrerit accumsan leo, nec tincidunt nisl porttitor ut. Maecenas quis leo id tortor ornare consequat. Fusce pharetra ultricies consequat. Phasellus sed fermentum massa. Nulla gravida commodo lobortis. Morbi egestas dui eget elit scelerisque facilisis. Aliquam erat volutpat. Proin eget magna velit, quis rhoncus dui. Curabitur eleifend sollicitudin viverra. Nam a mi enim, eget dapibus nulla. Nunc venenatis ultricies lorem, ut fringilla orci dapibus ac. Pellentesque velit mi, pulvinar quis ultricies a, semper a diam. Duis facilisis nibh vel massa rutrum non consequat ipsum hendrerit. In non pulvinar dolor. Maecenas laoreet faucibus sem, et consequat felis porta sit amet.',
+}]
